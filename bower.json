@@ -1,0 +1,25 @@
+{
+  "name": "Konfy",
+  "authors": [
+    "Camille Reynders <info@creynders.be>"
+  ],
+  "description": "Configuration of node and webapps made easy",
+  "main": "lib/browser.js",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "configuration",
+    "node",
+    "browserify"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/creynders/konfy",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
