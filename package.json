@@ -33,7 +33,7 @@
     "browserify"
   ],
   "scripts": {
-    "test": "grunt"
+    "test": "grunt test"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "^0.10.0",
