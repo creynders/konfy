@@ -68,7 +68,7 @@ describe( "Konfy", function(){
         it( "should load the configuration file", function(){
             var spy = sinon.spy();
             subject.load( spy );
-            expect( spy.calledWith( null, fx[fx.defaultConfigFile] ) ).to.be.true();
+            expect( spy.calledWith( undefined, fx[fx.defaultConfigFile] ) ).to.be.true();
         } );
         it( "should expand placeholders in the configuration data with the passed in values", function(){
             var payload = {
