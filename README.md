@@ -215,11 +215,11 @@ First loads the environment variables from `.env` (if this hasn't happened alrea
 	});
 	```
 
-* `options.config` [String] default: 'config.json', Allows overriding the default filename and path for the `config.json` file.
+* `options.configFile` [String] default: 'config.json', Allows overriding the default filename and path for the `config.json` file.
 
 	```js
 	konfy.load({
-		config : "config/globals.json"
+		configFile : "config/globals.json"
 	});
 	```
 
