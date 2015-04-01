@@ -153,14 +153,14 @@ E.g. using the above example `.env` file with :
 
 Will result in a configuration object with value `42` for key `answer`.
 
-**To achieve the same in the browser** you need to pass the required `process.env` values to the `values` object of the Konfy configuration object.
+**To achieve the same in the browser** you need to pass the required `process.env` values to the `config` object of the Konfy configuration object.
 
 E.g.:
 
 ```js
 //file: main.js
 konfy.load({
-	values: {
+	config: {
 		theAnswer: process.env.THE_ANSWER
 	}
 });
@@ -233,11 +233,11 @@ First loads the environment variables from `.env` (if this hasn't happened alrea
 	});
 	```
 
-* `options.values` [Object] Allows feeding the configuration data with values for variable interpolation.
+* `options.config` [Object] Allows feeding the configuration data with values for variable interpolation.
 	
 	```js
 	konfy.load({
-		values : {
+		config : {
 			foo: "foo"
 		}
 	});
@@ -336,7 +336,7 @@ var app = require('./app')();
 var konfy = require('konfy');
 konfy.load({
 	configFile : "config/config.json",
-	values : {
+	config : {
 		API_URL : process.env.REMOTE_HOST
 	}
 },function(err, config){
