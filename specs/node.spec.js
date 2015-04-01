@@ -38,9 +38,9 @@ describe( "Konfy", function(){
         it( "should be a function", function(){
             expect( subject.loadEnv ).to.be.a.function();
         } );
-        it( "should delegate to dotenv#load when using defaults", function(){
+        it( "should delegate to dotenv#_getKeysAndValuesFromEnvFilePath when using defaults", function(){
             subject.loadEnv();
-            expect( fx.dotenv.mocked.load.calledOnce ).to.be.true();
+            expect( fx.dotenv.mocked._getKeysAndValuesFromEnvFilePath.calledTwice ).to.be.true();
         } );
         it( "should delegate to dotenv#crappyAPI when providing custom path", function(){
             var payload = {
@@ -53,7 +53,7 @@ describe( "Konfy", function(){
         it( "should reload environment values on every call", function(){
             subject.loadEnv();
             subject.loadEnv();
-            expect( fx.dotenv.mocked.load.calledTwice ).to.be.true();
+            expect( fx.dotenv.mocked._getKeysAndValuesFromEnvFilePath.callCount ).to.equal(4);
         } );
     } );// module#loadEnv
 
@@ -63,16 +63,16 @@ describe( "Konfy", function(){
         } );
         it( "should load the environment values", function(){
             subject.load();
-            expect( fx.dotenv.mocked.load.calledOnce ).to.be.true();
+            expect( fx.dotenv.mocked._getKeysAndValuesFromEnvFilePath.callCount ).to.equal(2);
         } );
         it( "should load the configuration file", function(){
             var spy = sinon.spy();
             subject.load( spy );
-            expect( spy.calledWith( undefined, fx[fx.defaultConfigFile] ) ).to.be.true();
+            expect( spy.calledWith( null, fx[fx.defaultConfigFile] ) ).to.be.true();
         } );
         it( "should expand placeholders in the configuration data with the passed in values", function(){
             var payload = {
-                values : {
+                config : {
                     foo : "success"
                 }
             };
@@ -83,18 +83,18 @@ describe( "Konfy", function(){
             subject.load( payload, function(err, results){
                 passed = results;
             } );
-            expect( passed.foo ).to.equal(payload.values.foo);
+            expect( passed.foo ).to.equal(payload.config.foo);
         } );
         it( "should NOT reload the environment values once they've been loaded for the default node environment", function(){
             subject.load();
             subject.load();
-            expect( fx.dotenv.mocked.load.calledOnce ).to.be.true();
+            expect( fx.dotenv.mocked._getKeysAndValuesFromEnvFilePath.callCount ).to.equal(2);
         } );
         it( "should NOT reload the environment values once they've been loaded for a specific node environment", function(){
             process.env.NODE_ENV = "testing";
             subject.load();
             subject.load();
-            expect( fx.dotenv.mocked.load.calledOnce ).to.be.true();
+            expect( fx.dotenv.mocked._getKeysAndValuesFromEnvFilePath.callCount ).to.equal(2);
         } );
     } );
 
